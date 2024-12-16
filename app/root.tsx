@@ -9,6 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import { NavBar } from "./components/nav-bar";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,7 +35,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <main className="h-screen w-screen p-2">
+          <div className="h-full grid grid-rows-8 grid-cols-12 grid-flow-col gap-1">
+            <div className="row-span-8 col-span-2 bg-slate-800">
+              <NavBar />
+            </div>
+            {children}
+          </div>
+        </main>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -63,11 +71,11 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
+    <main className="h-screen container mx-auto">
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="w-full overflow-x-auto">
           <code>{stack}</code>
         </pre>
       )}

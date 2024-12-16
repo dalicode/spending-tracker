@@ -10,3 +10,8 @@ body {
     color-scheme: dark;
   }
 }
+
+.ag-root-wrapper {
+  border: solid 0px;
+  border-radius: 0px;
+}
