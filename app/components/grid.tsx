@@ -48,7 +48,6 @@ import {
   useState,
   type Ref,
 } from "react";
-import "./grid.css";
 import type { JsonObject } from "@prisma/client/runtime/library";
 
 ModuleRegistry.registerModules([
@@ -178,8 +177,10 @@ export const Grid = forwardRef<unknown, Props>(
         onCellEditingStopped={onCellEditingStoppedHandler}
         onRowDataUpdated={onRowDataUpdated}
         onGridReady={() => setGridReady(true)}
-        defaultColDef={{ flex: 1, editable: true }}
+        editType="fullRow"
+        defaultColDef={{ flex: 1 }}
         theme={themeBalham.withPart(colorSchemeDarkBlue)}
+        suppressClickEdit
         className="h-full"
         columnDefs={colDef}
         rowData={rowData}

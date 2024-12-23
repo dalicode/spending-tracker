@@ -7,8 +7,9 @@ import { data, redirect, type LoaderFunction } from "react-router";
 import { getUser } from "~/backend/user.server";
 import { Button } from "~/components/button";
 import { ButtonRow } from "~/components/button-row";
-import { Grid } from "~/components/grid";
+import { Grid } from "~/components/Grid";
 import { sessionStorage } from "~/backend/session.server";
+import { useEffect } from "react";
 
 type Props = {
   className: string;
@@ -32,7 +33,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 const Spending = ({ className }: Props) => {
   return (
     <>
-      <div className={`grid grid-rows-8 bg-slate-800 col-span-10`}>
+      <div className={`grid bg-granite-900 grid-rows-8 col-span-10`}>
         <div className="row-span-6"></div>
         <ButtonRow className="flex px-1 pb-1 row-span-2 text-xs font-bold mt-auto">
           <Button Icon={ArrowDownTrayIcon}>Import</Button>
@@ -40,7 +41,7 @@ const Spending = ({ className }: Props) => {
           <Button Icon={AdjustmentsHorizontalIcon}>Filter</Button>
         </ButtonRow>
       </div>
-      <div className="row-span-7 col-span-10 bg-slate-800">
+      <div className="row-span-7 col-span-10">
         <Grid />
       </div>
     </>

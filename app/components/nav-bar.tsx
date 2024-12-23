@@ -37,6 +37,7 @@ export const NavBar = () => {
           <Button
             key={index}
             Icon={CalendarDateRangeIcon}
+            iconSize="size-6"
             value={navRoutes[index]}
             onClick={onClickHandler}
             className="w-full text-left py-4"

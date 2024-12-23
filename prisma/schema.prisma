@@ -16,19 +16,24 @@ model User {
   updatedAt DateTime @updatedAt
   username String @unique
   password String
-  role String
+  role String @default("USER")
   config String @default("")
   categories Category[]
   transactions Transaction[]
+  recurring Recurring[]
 }
 
 model Category {
   id    Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   user User @relation(fields: [user_id], references: [id])
   user_id Int
   name String
   transaction Transaction[]
+  sort_order Int @default(0)
   tombstone Boolean @default(false)
+  @@unique([user_id, name])
 }
 
 model Transaction {
@@ -41,4 +46,18 @@ model Transaction {
   description String
   date DateTime
   tombstone Boolean @default(false)
+}
+
+model Recurring {
+  id Int     @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [user_id], references: [id])
+  user_id Int
+  name String
+  amount Int
+  is_income Boolean @default(false)
+  sort_order Int @default(0)
+  tombstone Boolean @default(false)
+  @@unique([user_id, name, is_income])
 }

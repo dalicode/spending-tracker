@@ -6,12 +6,14 @@ type Props = {
   value?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  iconSize?: string;
 };
 
 export const Button = ({
   children,
   className,
   Icon,
+  iconSize,
   onClick,
   value,
 }: Props) => {
@@ -20,10 +22,10 @@ export const Button = ({
       type="button"
       value={value}
       onClick={onClick}
-      className={`hover:bg-slate-700 text-white py-1 px-2 ${className}`}
+      className={`flex gap-3 py-1.5 px-3 hover:bg-bray-500/20 ${className}`}
     >
-      {Icon && <Icon className="size-5 inline-block align-bottom" />}
-      <span className={children ? `ml-2` : ""}>{children}</span>
+      {Icon && <Icon className={`size-4 ${iconSize}`} />}
+      <span>{children}</span>
     </button>
   );
 };
