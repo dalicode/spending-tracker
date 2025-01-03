@@ -6,8 +6,8 @@ import {
   type MouseEvent,
   type SetStateAction,
 } from "react";
-import { Button } from "./button";
-import { NavButton } from "./nav-button";
+import { Button } from "./Button";
+import { NavButton } from "./NavButton";
 import { CalendarDateRangeIcon } from "@heroicons/react/16/solid";
 import { redirect, useNavigate } from "react-router";
 

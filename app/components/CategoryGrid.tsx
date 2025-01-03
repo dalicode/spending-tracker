@@ -1,8 +1,8 @@
 import { useCallback, useRef, useState } from "react";
 import { Grid, type typeWithGridApi } from "./Grid";
-import { rowDataValidator, type categoryGridType } from "./utils";
+import { rowDataValidator, type clientGridType } from "./utils";
 import { PlusIcon } from "@heroicons/react/16/solid";
-import { Button } from "./button";
+import { Button } from "./Button";
 import type {
   CellEditingStoppedEvent,
   ColDef,
@@ -12,8 +12,8 @@ import { CustomOptionsRenderer } from "./CustomOptionsRenderer";
 
 type categoryProps = {
   className: string;
-  categoryData: categoryGridType[];
-  setCategoryData: React.Dispatch<React.SetStateAction<categoryGridType[]>>;
+  categoryData: clientGridType[];
+  setCategoryData: React.Dispatch<React.SetStateAction<clientGridType[]>>;
   onDeleteCategoryHandler: (row: IRowNode) => void;
   onUpdateCategoryHandler: (row: IRowNode) => void;
 };
@@ -27,7 +27,7 @@ const CategoryGrid = ({
 }: categoryProps) => {
   const catGridRef = useRef<typeWithGridApi>(null);
   const [rowAdded, setRowAdded] = useState(false);
-  const [prevCategoryData, setPrevCategoryData] = useState<categoryGridType[]>(
+  const [prevCategoryData, setPrevCategoryData] = useState<clientGridType[]>(
     structuredClone(categoryData)
   );
 
@@ -51,12 +51,12 @@ const CategoryGrid = ({
       },
       editable: true,
     },
-    { field: "spent", width: 100 },
+    { field: "amount", width: 100 },
   ]);
 
   const onCategoryAddHandler = useCallback(() => {
-    setCategoryData((categoryData: categoryGridType[]) => {
-      return [...categoryData, { name: "", spent: 0 }];
+    setCategoryData((categoryData: clientGridType[]) => {
+      return [...categoryData, { name: "", amount: 0 }];
     });
     setRowAdded(true);
   }, [catGridRef?.current, setRowAdded]);

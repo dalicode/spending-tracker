@@ -5,8 +5,8 @@ import {
 } from "@heroicons/react/16/solid";
 import { data, redirect, type LoaderFunction } from "react-router";
 import { getUser } from "~/backend/user.server";
-import { Button } from "~/components/button";
-import { ButtonRow } from "~/components/button-row";
+import { Button } from "~/components/Button";
+import { ButtonRow } from "~/components/ButtonRow";
 import { Grid } from "~/components/Grid";
 import { sessionStorage } from "~/backend/session.server";
 import { useEffect } from "react";

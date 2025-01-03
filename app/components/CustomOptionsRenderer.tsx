@@ -1,5 +1,5 @@
 import type { CustomCellRendererProps } from "ag-grid-react";
-import { Button } from "./button";
+import { Button } from "./Button";
 import { EllipsisVerticalIcon } from "@heroicons/react/16/solid";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import type { IRowNode } from "ag-grid-community";
@@ -21,11 +21,10 @@ export const CustomOptionsRenderer = ({
       <div className="">{value}</div>
       <div className="">
         <Menu>
-          <MenuButton>
-            <Button
-              className="z-10 text-slate-600 hover:text-white text-center hover:bg-inherit"
-              Icon={EllipsisVerticalIcon}
-            />
+          <MenuButton
+            className={`flex py-1.5 px-3 z-10 text-slate-600 hover:text-white`}
+          >
+            <EllipsisVerticalIcon className={`size-4`} />
           </MenuButton>
           <MenuItems
             anchor="bottom"

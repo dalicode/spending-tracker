@@ -11,11 +11,7 @@ export const getRecurring = async (userid: number) => {
     where: { user_id: userid },
   });
 
-  if (recurring && recurring.length) {
-    return recurring;
-  } else {
-    console.error("Recurring expenses not found");
-  }
+  return recurring;
 };
 
 export const updateRecurring = async (recurring: RecurringForm) => {
@@ -36,7 +32,10 @@ export const updateRecurring = async (recurring: RecurringForm) => {
   }
 };
 
-export const addRecurring = async (recurring: RecurringForm, user: User) => {
+export const addRecurringExpense = async (
+  recurring: RecurringForm,
+  user: User
+) => {
   console.log(recurring);
   if (user) {
     const newRecurring = await prisma.recurring.create({
@@ -44,7 +43,6 @@ export const addRecurring = async (recurring: RecurringForm, user: User) => {
         user_id: user.id,
         name: recurring.name,
         amount: recurring.amount,
-        is_income: recurring.isIncome,
       },
     });
 
@@ -55,7 +53,29 @@ export const addRecurring = async (recurring: RecurringForm, user: User) => {
   }
 };
 
-export const delCategory = async (recurring: RecurringForm, user: User) => {
+export const addRecurringIncome = async (
+  recurring: RecurringForm,
+  user: User
+) => {
+  console.log(recurring);
+  if (user) {
+    const newRecurring = await prisma.recurring.create({
+      data: {
+        user_id: user.id,
+        name: recurring.name,
+        amount: recurring.amount,
+        is_income: true,
+      },
+    });
+
+    if (newRecurring) {
+      const allRecurring = await getRecurring(user.id);
+      return allRecurring;
+    }
+  }
+};
+
+export const delRecurring = async (recurring: RecurringForm, user: User) => {
   console.log(recurring);
   if (recurring.id) {
     const updatedRecurring = await prisma.recurring.update({

@@ -15,10 +15,10 @@ export const createUser = async (user: RegisterForm) => {
       config: user.config,
       categories: {
         create: [
-          { name: "groceries" },
-          { name: "dining Out" },
-          { name: "entertainment" },
-          { name: "misc" },
+          { name: "Groceries" },
+          { name: "Dining Out" },
+          { name: "Entertainment" },
+          { name: "Misc" },
         ],
       },
     },

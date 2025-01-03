@@ -1,17 +1,20 @@
-import type { Category } from "@prisma/client";
+import type { Category, Recurring } from "@prisma/client";
 
-export type categoryGridType = {
+export type clientGridType = {
+  id?: number;
   name: string;
-  spent: number;
+  amount: number;
+  tombstone?: boolean;
 };
 
-export type testType = {
+export type overviewDataType = {
   message: string;
-  data: Category[];
+  categoryData: Category[];
+  recurringData: Recurring[];
 };
 
 export const rowDataValidator = (
-  rowData: categoryGridType[],
+  rowData: clientGridType[],
   newValue: string,
   oldValue: string
 ) => {
